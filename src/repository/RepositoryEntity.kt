@@ -13,5 +13,10 @@ class RepositoryEntity {
         fun remove(contact: ContactEntity){
 
         }
+
+        fun getList(): List<ContactEntity>{
+            return contactList
+        }
+
     }
 }
