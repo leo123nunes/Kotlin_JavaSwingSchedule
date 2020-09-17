@@ -15,6 +15,7 @@ public class ContactForm extends JFrame{
     private ContactBusiness contactBusiness;
 
     public ContactForm(){
+        this.setTitle("Schedule");
         setContentPane(rootPanel);
         setSize(500,250);
         setVisible(true);

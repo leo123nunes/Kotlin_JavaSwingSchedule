@@ -1,6 +1,8 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,10 +18,13 @@ public class MainForm extends JFrame{
     private JButton buttonRemove;
     private JTable tableContacts;
     private JLabel contactsQuantity;
+    private String mName = "";
+    private String mTelephone = "";
 
     private ContactBusiness mContactBusiness = new ContactBusiness();
 
     public MainForm(){
+        this.setTitle("Schedule");
         setContentPane(rootPanel);
         setSize(500,250);
         setVisible(true);
@@ -64,9 +69,32 @@ public class MainForm extends JFrame{
             }
         });
 
+        tableContacts.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(e.getValueIsAdjusting()){
+                    if(tableContacts.getSelectedRow()!=-1){
+                        mName = tableContacts.getValueAt(tableContacts.getSelectedRow(),0).toString();
+                        mTelephone = tableContacts.getValueAt(tableContacts.getSelectedRow(),1).toString();
+                    }
+                }
+            }
+        });
+
         buttonRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try{
+                    mContactBusiness.delete(mName,mTelephone);
+
+                    loadContacts();
+
+                    mName = "";
+                    mTelephone = "";
+                }catch(Exception excp){
+                    JOptionPane.showMessageDialog(new JFrame(), excp.getMessage());
+                }
+
 
             }
         });
