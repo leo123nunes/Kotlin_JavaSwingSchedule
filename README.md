@@ -1,8 +1,8 @@
 # Kotlin-JavaSwing_Schedule
-Aplicativo de uma agenda simples para guardar contatos pelo nome e telefone. 
+Simple phonebook application to store contacts by name and phone. 
 
-# Linguagem de programação
-Kotlin e Java.
+# Programming language
+Kotlin and Java.
 
 # IDE
 Intellij IDEA 2020.2 (Ultimate Edition)
